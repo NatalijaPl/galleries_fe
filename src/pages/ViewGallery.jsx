@@ -15,10 +15,13 @@ import {
 } from "../store/auth/selector";
 import { format } from "date-fns";
 import { Carousel } from "react-bootstrap";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Button from "react-bootstrap/Button";
 
 export const ViewGallery = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const history = useHistory();
   const gallery = useSelector(selectGallery);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const activeUser = useSelector(selectActiveUser);
@@ -40,12 +43,12 @@ export const ViewGallery = () => {
 
   const handleDeleteComment = (id) => {
     dispatch(deleteComment(id));
-    window.location.replace("/galleries");
+    history.push("/galleries");
   };
 
   const handleDeleteGallery = () => {
     dispatch(deleteGallery(id));
-    window.location.replace("/my-galleries");
+    history.push("/galleries");
   };
 
   return (
@@ -55,7 +58,7 @@ export const ViewGallery = () => {
           <>
             <h1>{gallery?.title}</h1>
             <h3>
-              By:{" "}
+              by:{" "}
               <Link to={`/authors/${gallery?.user?.id}`}>
                 {gallery?.user?.first_name} {gallery?.user?.last_name}
               </Link>
@@ -89,23 +92,24 @@ export const ViewGallery = () => {
             </div>
             <div>
               {gallery && gallery.description ? (
-                <p>{gallery.description}</p>
+                <h3>{gallery.description}</h3>
               ) : (
                 <p>no descripton</p>
               )}
             </div>
             {activeUser && activeUser.id === gallery.user_id ? (
-              <button>
+              <Button variant="light">
                 <Link to={`/edit-gallery/${gallery.id}`}>edit gallery</Link>
-              </button>
+              </Button>
             ) : (
               <></>
             )}
             <br />
+            <br />
             {activeUser && activeUser.id === gallery.user_id ? (
-              <button onClick={handleDeleteGallery} className="px-4 my-3">
+              <Button onClick={handleDeleteGallery} variant="primary">
                 delete gallery
-              </button>
+              </Button>
             ) : (
               <></>
             )}
@@ -130,12 +134,12 @@ export const ViewGallery = () => {
                   </div>
                   <p>{comment.body}</p>
                   {activeUser && activeUser.id === comment.user.id ? (
-                    <button
+                    <Button
                       onClick={() => handleDeleteComment(comment.id)}
-                      className="px-4"
+                      variant="primary"
                     >
                       delete comment
-                    </button>
+                    </Button>
                   ) : (
                     <></>
                   )}
@@ -157,9 +161,9 @@ export const ViewGallery = () => {
               placeholder="leave a comment:"
             />
             <br />
-            <button type="submit" className="px-4 my-3">
-              submit
-            </button>
+            <Button type="submit" variant="primary">
+              submit comment
+            </Button>
           </form>
         )}
       </div>

@@ -12,6 +12,7 @@ import {
   selectSearchUserId,
 } from "../store/galleries/selectors";
 import { format } from "date-fns";
+import Button from "react-bootstrap/Button";
 
 export const Home = ({ selfId, gallery } = null) => {
   const dispatch = useDispatch();
@@ -57,18 +58,18 @@ export const Home = ({ selfId, gallery } = null) => {
 
   return (
     <div>
-      <h3> galleries: </h3>
+      <h3 className="my-3"> galleries: </h3>
       <div>
         <input
-          className="px-3 my-3"
+          className="px-3 my-2"
           type="text"
           onChange={handleChangeSearchTerm}
           placeholder="search..."
         />
         <br />
-        <button onClick={handleSearch} className="px-4">
+        <Button onClick={handleSearch} variant="primary">
           search
-        </button>
+        </Button>
       </div>
       {galleries?.data.length ? (
         <div>
@@ -78,14 +79,16 @@ export const Home = ({ selfId, gallery } = null) => {
                 <div className="my-3">
                   <img src={gallery?.images[0]?.url} alt="gallery cover" />
                 </div>
-                <a href={`/galleries/${gallery?.id}`}>{gallery?.title}</a>
+                <h3>
+                  <a href={`/galleries/${gallery?.id}`}>{gallery?.title}</a>
+                </h3>
                 <p>
                   created at:{" "}
                   {format(new Date(gallery.created_at), "dd-MM-yyyy HH:mm")}
                 </p>
 
                 <div>
-                  By:{" "}
+                  by:{" "}
                   <a href={`/authors/${gallery?.user.id}`}>
                     {gallery?.user?.first_name} {gallery?.user?.last_name}
                   </a>
@@ -94,12 +97,12 @@ export const Home = ({ selfId, gallery } = null) => {
             ))}
           </ul>
           {galleries.current_page !== galleries.last_page && (
-            <button
-              className="px-4 my-3"
+            <Button
               onClick={() => handlePaginate(galleries.current_page + 1)}
+              variant="primary"
             >
               load more
-            </button>
+            </Button>
           )}
         </div>
       ) : (

@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { register } from "../store/auth/slice";
 import { useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -28,7 +29,8 @@ export default function Register() {
 
   return (
     <div>
-      <form onSubmit={handleOnRegister} className="px-4 my-5">
+      <form onSubmit={handleOnRegister} className="px-4 my-3">
+        <h3>register page</h3>
         <label>first name: </label>{" "}
         <input
           placeholder="first name"
@@ -93,7 +95,9 @@ export default function Register() {
         <label>I accept terms and conditions</label>
         <br />
         <br />
-        <button type="submit">register</button>
+        <Button type="submit" variant="primary">
+          register
+        </Button>
       </form>
     </div>
   );

@@ -4,15 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import DefaultLayout from "./layouts";
 import store from "./store/store";
+import Layout from "./layouts";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <DefaultLayout>
+    <Layout>
       <App />
-    </DefaultLayout>
+    </Layout>
   </Provider>
 );
 

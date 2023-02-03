@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGallery } from "../store/galleries/selectors";
 import { createGallery, editGallery } from "../store/galleries/slice";
+import Button from "react-bootstrap/Button";
 
 export default function CreateNewGallery() {
   const { id } = useParams();
@@ -159,21 +160,36 @@ export default function CreateNewGallery() {
                   onChange={(e) => handleInputChange(e, i)}
                 />
                 {newImages?.length !== 1 && (
-                  <button onClick={() => handleRemoveClick(i)}>remove</button>
+                  <Button
+                    onClick={() => handleRemoveClick(i)}
+                    variant="primary"
+                  >
+                    remove
+                  </Button>
                 )}
                 {newImages?.length !== 1 && (
-                  <button type="button" onClick={() => changeOrder(i, "UP")}>
+                  <Button
+                    type="button"
+                    variant="primary"
+                    onClick={() => changeOrder(i, "UP")}
+                  >
                     move up
-                  </button>
+                  </Button>
                 )}
                 {newImages?.length !== 1 && (
-                  <button type="button" onClick={() => changeOrder(i, "DOWN")}>
+                  <Button
+                    type="button"
+                    onClick={() => changeOrder(i, "DOWN")}
+                    variant="primary"
+                  >
                     move down
-                  </button>
+                  </Button>
                 )}
                 <div>
                   {newImages?.length - 1 === i && (
-                    <button onClick={handleAddClick}>add picture</button>
+                    <Button onClick={handleAddClick} variant="primary">
+                      add picture
+                    </Button>
                   )}
                 </div>
               </div>
@@ -181,14 +197,14 @@ export default function CreateNewGallery() {
           })}
         <br />
         <span>
-          <button type="submit" className="px-3">
+          <Button type="submit" variant="primary">
             {id ? "edit" : "submit"}
-          </button>
+          </Button>
           <br />
           <br />
-          <button onClick={handleCancel} className="px-3">
+          <Button onClick={handleCancel} variant="primary">
             cancel
-          </button>
+          </Button>
         </span>
       </form>
     </div>

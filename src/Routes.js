@@ -11,6 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CreateNewGallery from "./pages/CreateNewGallery";
+import { SingleAuthor } from "./pages/SingleAuthor";
 
 export default function Routes() {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ export default function Routes() {
           <Redirect to="/galleries"></Redirect>
         </Route>
         <Route exact path="/authors/:id">
-          <Home />
+          <SingleAuthor />
         </Route>
         <Route path="/galleries" exact>
           <Home />

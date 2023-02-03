@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../store/auth/slice";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ export default function Login() {
 
   return (
     <div>
-      <form onSubmit={handleOnLogin} className="px-4 my-5">
+      <form onSubmit={handleOnLogin} className="px-4 my-3">
+        <h3>login page</h3>
         <label>email: </label>{" "}
         <input
           required
@@ -41,7 +43,9 @@ export default function Login() {
         />
         <br />
         <br />
-        <button type="submit">login</button>
+        <Button type="submit" variant="primary">
+          login
+        </Button>
       </form>
     </div>
   );
