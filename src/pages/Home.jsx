@@ -77,7 +77,11 @@ export const Home = ({ selfId, gallery } = null) => {
             {galleries.data.map((gallery) => (
               <div key={gallery.id}>
                 <div className="my-3">
-                  <img src={gallery?.images[0]?.url} alt="gallery cover" />
+                  <img
+                    src={gallery?.images[0]?.url}
+                    alt="gallery cover"
+                    width="700"
+                  />
                 </div>
                 <h3>
                   <a href={`/galleries/${gallery?.id}`}>{gallery?.title}</a>

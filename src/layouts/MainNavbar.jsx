@@ -26,10 +26,12 @@ export const MainNavbar = () => {
           )}
           {!isAuthenticated && <Nav.Link href="/login">login</Nav.Link>}
           {!isAuthenticated && <Nav.Link href="/register">register</Nav.Link>}
-
-          <Button type="submit" onClick={handleLogout} variant="primary">
-            logout
-          </Button>
+          {isAuthenticated && (
+            <Button type="submit" onClick={handleLogout} variant="primary">
+              {" "}
+              logout
+            </Button>
+          )}
         </Nav>
       </Container>
     </Navbar>
