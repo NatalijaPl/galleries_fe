@@ -55,7 +55,6 @@ export const SingleAuthor = (selfId) => {
     }
   }
 
-  console.log(galleries.data.filter((g) => g.user_id == id));
   return (
     <div>
       {" "}
